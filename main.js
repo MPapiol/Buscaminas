@@ -7,6 +7,7 @@ let victoryCounter = 0
 const title = document.getElementById('title')
 const play = document.getElementById('play').addEventListener('click', startGame)
 //Creating the visual game board
+
 for (let i = 0; i < rows; i++) {
    let column = document.createElement('div');
    column.classList.add('column');
@@ -105,68 +106,84 @@ function generateWarning() {
             contadorDeMinasAlrededor++
          }
          if (contadorDeMinasAlrededor !== 0) {
-            if (contadorDeMinasAlrededor === 5) {
-               gameBoard[i] = 5
-            }
-            if (contadorDeMinasAlrededor === 4) {
-               gameBoard[i] = 4
-            }
-            if (contadorDeMinasAlrededor === 3) {
-               gameBoard[i] = 3
-            }
-            if (contadorDeMinasAlrededor === 2) {
-               gameBoard[i] = 2
-            }
-            if (contadorDeMinasAlrededor === 1) {
-               gameBoard[i] = 1
-            }
+         // Aqui se puede resumir en:
+         gameBoard[i] = contadorDeMinasAlrededor
+            // if (contadorDeMinasAlrededor === 5) {
+            //    gameBoard[i] = 5
+            // }
+            // if (contadorDeMinasAlrededor === 4) {
+            //    gameBoard[i] = 4
+            // }
+            // if (contadorDeMinasAlrededor === 3) {
+            //    gameBoard[i] = 3
+            // }
+            // if (contadorDeMinasAlrededor === 2) {
+            //    gameBoard[i] = 2
+            // }
+            // if (contadorDeMinasAlrededor === 1) {
+            //    gameBoard[i] = 1
+            // }
          } else {
             gameBoard[i] = 0
          }
          contadorDeMinasAlrededor = 0
       }
       if (estaEnLaEsquinaAbajoMargenIzquierdo && !hayMina) {
-         if (estaALaDerecha) {
-            contadorDeMinasAlrededor++
-         }
-         if (estaArriba) {
-            contadorDeMinasAlrededor++
-         }
-         if (estaArribaALaDerecha) {
-            contadorDeMinasAlrededor++
-         }
+      
+      if(estaALaDerecha || estaArriba || estaArribaALaDerecha) {
+         contadorDeMinasAlrededor++
+      }
+         // if (estaALaDerecha) {
+         //    contadorDeMinasAlrededor++
+         // }
+         // if (estaArriba) {
+         //    contadorDeMinasAlrededor++
+         // }
+         // if (estaArribaALaDerecha) {
+         //    contadorDeMinasAlrededor++
+         // }
          if (contadorDeMinasAlrededor !== 0) {
-            if (contadorDeMinasAlrededor === 3) {
-               gameBoard[i] = 3
-            }
-            if (contadorDeMinasAlrededor === 2) {
-               gameBoard[i] = 2
-            }
-            if (contadorDeMinasAlrededor === 1) {
-               gameBoard[i] = 1
-            }
+         
+            gameBoard[i] = contadorDeMinasAlrededor
+            // if (contadorDeMinasAlrededor === 3) {
+            //    gameBoard[i] = 3
+            // }
+            // if (contadorDeMinasAlrededor === 2) {
+            //    gameBoard[i] = 2
+            // }
+            // if (contadorDeMinasAlrededor === 1) {
+            //    gameBoard[i] = 1
+            // }
          } else {
             gameBoard[i] = 0
          }
          contadorDeMinasAlrededor = 0
       }
       if (estaEnElMargenArriba && !hayMina) {
-         if (estaALaDerecha) {
+      
+         const isAround = estaALaDerecha || estaAbajo || estaALaIzquierda || estaAbajoALaDerecha || estaAbajoALaIzquierda
+      
+         if(isAround) {
             contadorDeMinasAlrededor++
          }
-         if (estaAbajo) {
-            contadorDeMinasAlrededor++
-         }
-         if (estaALaIzquierda) {
-            contadorDeMinasAlrededor++
-         }
-         if (estaAbajoALaDerecha) {
-            contadorDeMinasAlrededor++
-         }
-         if (estaAbajoALaIzquierda) {
-            contadorDeMinasAlrededor++
-         }
+         // if (estaALaDerecha) {
+         //    contadorDeMinasAlrededor++
+         // }
+         // if (estaAbajo) {
+         //    contadorDeMinasAlrededor++
+         // }
+         // if (estaALaIzquierda) {
+         //    contadorDeMinasAlrededor++
+         // }
+         // if (estaAbajoALaDerecha) {
+         //    contadorDeMinasAlrededor++
+         // }
+         // if (estaAbajoALaIzquierda) {
+         //    contadorDeMinasAlrededor++
+         // }
+
          if (contadorDeMinasAlrededor !== 0) {
+          // TE SUENA YA COMO HACER UN REFACTOR DE ESTO, NO :)
             if (contadorDeMinasAlrededor === 5) {
                gameBoard[i] = 5
             }
@@ -188,6 +205,7 @@ function generateWarning() {
          contadorDeMinasAlrededor = 0
       }
       if (estaEnElMargenAbajo && !hayMina) {
+      // DE ESTO TAMBIEN SEGURO QUE TIENES ALGUNA IDEA 
          if (estaALaDerecha) {
             contadorDeMinasAlrededor++
          }
@@ -204,6 +222,7 @@ function generateWarning() {
             contadorDeMinasAlrededor++
          }
          if (contadorDeMinasAlrededor !== 0) {
+         // Y DE ESTO TAMBIEN 
             if (contadorDeMinasAlrededor === 5) {
                gameBoard[i] = 5
             }
@@ -235,6 +254,7 @@ function generateWarning() {
             contadorDeMinasAlrededor++
          }
          if (contadorDeMinasAlrededor !== 0) {
+         // VENGA
             if (contadorDeMinasAlrededor === 3) {
                gameBoard[i] = 3
             }
