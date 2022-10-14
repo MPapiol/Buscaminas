@@ -12,6 +12,8 @@ const title = document.getElementById('title')
 const play = document.getElementById('play').addEventListener('click', startGame)
 
 //Creating the visual game board
+
+// este FOR que crea el panel, metelo en una funcion y luego la ejecutras
 for (let c = 0; c < columns; c++) {
    let column = document.createElement('div');
    column.classList.add('column');
@@ -54,6 +56,8 @@ function depositMines() {
 }
 
 //Function generate warning. Warn of the surrounding mines
+// ESTA FUNCION ES GIGANTE, UN PRIMER PASO PARA REDUCIRLA Y Y QUE SEA MAS LEGIBLE ES PASARLA A OTRO ARCHIVO
+// METE ESTA FUNCION EN OTRO ARCHIVO
 function generateWarning() {
    for (let i = 0; i < gameBoard.length; i++) {
       const isInTheTopCornerLeftMargin = (i === 0)
@@ -73,6 +77,8 @@ function generateWarning() {
       const isOnBottomLeft = gameBoard[i - 9] === -1
       const isOnBottom = gameBoard[i + 1] === -1
       const isOnBottomRight = gameBoard[i + 11] === -1
+      
+      
       if (isInTheTopCornerLeftMargin && !thereMine) {
          if (isOnTheRight && isOnBottom && isOnBottomRight) {
             mineCounterAround = 3
@@ -92,6 +98,8 @@ function generateWarning() {
          }
          mineCounterAround = 0
       }
+      
+      
       if (isOnTheLeftMargin && !thereMine) {
          if (isOnTheRight) {
             mineCounterAround++
@@ -115,6 +123,8 @@ function generateWarning() {
          }
          mineCounterAround = 0
       }
+      
+      
       if (isInBottomCornerLeftMargin && !thereMine) {
          if (isOnTheRight) {
             mineCounterAround++
