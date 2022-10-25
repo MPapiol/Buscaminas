@@ -8,7 +8,7 @@ function generateWarning() {
 }
 
 function generateWarningsOnTheCorners() {
-   const isInTheTopCornerLeftMargin = (i === 0)
+   const isInTheTopCornerLeftMargin = i === 0
    const isInBottomCornerLeftMargin = i === 9
    const isInTheTopCornerRightMargin = i === 90
    const isInBottomCornerRightMargin = i === 99
@@ -19,7 +19,9 @@ function generateWarningsOnTheCorners() {
    const isOnTheRight = gameBoard[i + 10] === -1
    const isOnBottomLeft = gameBoard[i - 9] === -1
    const isOnBottom = gameBoard[i + 1] === -1
-   const thereMine = (gameBoard[i] === -1)
+   const thereMine = gameBoard[i] === -1
+   
+
    for (i = 0; i < gameBoard.length; i++) {
       if (isInTheTopCornerLeftMargin && !thereMine) {
          if (isOnTheRight && isOnBottom && isOnBottomRight) {
@@ -51,11 +53,13 @@ function generateWarningsOnTheCorners() {
          if (isInTopRight) {
             mineCounterAround++
          }
-         if (mineCounterAround !== 0) {
-            gameBoard[i] = mineCounterAround
-         } else {
-            gameBoard[i] = 0
-         }
+         // Esta linea sustituye al if else, por quitarnos codigo que es tipica
+         gameBoard[i] = mineCounterAround !== 0 ? mineCounterAround : 0
+         // if (mineCounterAround !== 0) {
+         //    gameBoard[i] = mineCounterAround
+         // } else {
+         //    gameBoard[i] = 0
+         // }
          mineCounterAround = 0
       }
 
@@ -113,7 +117,13 @@ function generateWarningOnTheMargin() {
       const isOnTheRightMargin = i > 90 && i < 99
       const isInTheMarginTop = i % 10 === 0
       const isInTheMarginBottom = (i + 1) % 10 === 0
+      
+      
+      const positions = [isOnTheRight, isOnBottom, isInTop, isOnBottomRight, isInTopRight]
+      
       if (isOnTheLeftMargin && !thereMine) {
+         // Con la linea de abajo nos quitamos los siguientes 5 ifs
+         // mineCounterAround = positions.filter(position => position).length
          if (isOnTheRight) {
             mineCounterAround++
          }
@@ -183,6 +193,8 @@ function generateWarningOnTheMargin() {
          mineCounterAround = 0
       }
       if (isOnTheRightMargin && !thereMine) {
+   
+      
          if (isOnTheLeft) {
             mineCounterAround++
          }
